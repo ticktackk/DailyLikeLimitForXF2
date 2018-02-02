@@ -1,0 +1,14 @@
+{
+    "legacy_addon_id": "",
+    "title": "Daily Like Limit",
+    "description": "Limit the maximum amount of times a user can like daily",
+    "version_id": 1000011,
+    "version_string": "1.0.0 Alpha 1",
+    "dev": "TickTackk",
+    "dev_url": "https://twitter.com/t1cktackk",
+    "faq_url": "",
+    "support_url": "",
+    "extra_urls": [],
+    "require": [],
+    "icon": "fa-thumbs-up"
+}

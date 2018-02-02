@@ -1,0 +1,6 @@
+{
+    "from_class": "XF\\Repository\\LikedContent",
+    "to_class": "TickTackk\\DailyLikeLimit\\XF\\Repository\\LikedContent",
+    "execute_order": 10,
+    "active": true
+}

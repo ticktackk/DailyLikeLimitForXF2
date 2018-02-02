@@ -1,0 +1,14 @@
+{
+    "dailyLikeLimit_you_have_reached_your_daily_like_limit.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "e3c64488418c2f3571534130dbdcb699"
+    },
+    "permission_interface.dailyLikeLimit.txt": {
+        "global_cache": false,
+        "version_id": 1000011,
+        "version_string": "1.0.0 Alpha 1",
+        "hash": "d942443d863398f95611a3e77633f367"
+    }
+}
