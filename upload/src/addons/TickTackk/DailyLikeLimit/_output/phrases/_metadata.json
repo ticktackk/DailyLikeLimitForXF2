@@ -5,6 +5,12 @@
         "version_string": "1.0.0 Alpha 1",
         "hash": "e3c64488418c2f3571534130dbdcb699"
     },
+    "permission.dailyLikeLimit_maximumAllowedLikes.txt": {
+        "global_cache": false,
+        "version_id": 1000012,
+        "version_string": "1.0.0 Alpha 2",
+        "hash": "578a9cbd9d163ab148b98541575bdf24"
+    },
     "permission_interface.dailyLikeLimit.txt": {
         "global_cache": false,
         "version_id": 1000011,
