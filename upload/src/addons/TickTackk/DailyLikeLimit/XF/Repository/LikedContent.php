@@ -16,9 +16,8 @@ class LikedContent extends XFCP_LikedContent
 
     public function countDailyLikesByLikeUserId($userId)
     {
-
         return $this->db()->fetchOne("
-            SELECT COUNT(*) liked_content_count
+            SELECT COUNT(*) AS liked_content_count
             FROM xf_liked_content
             WHERE like_user_id = ?
             AND like_date >= ?
