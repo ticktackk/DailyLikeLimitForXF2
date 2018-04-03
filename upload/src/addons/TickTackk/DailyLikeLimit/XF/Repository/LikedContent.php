@@ -4,6 +4,11 @@ namespace TickTackk\DailyLikeLimit\XF\Repository;
 
 class LikedContent extends XFCP_LikedContent
 {
+    /**
+     * @param $userId
+     *
+     * @return \XF\Mvc\Entity\Finder
+     */
     public function findDailyLikesByLikeUserId($userId)
     {
         return $this->finder('XF:LikedContent')
@@ -14,6 +19,11 @@ class LikedContent extends XFCP_LikedContent
             ->setDefaultOrder('like_date', 'DESC');
     }
 
+    /**
+     * @param $userId
+     *
+     * @return bool|null
+     */
     public function countDailyLikesByLikeUserId($userId)
     {
         return $this->db()->fetchOne("
