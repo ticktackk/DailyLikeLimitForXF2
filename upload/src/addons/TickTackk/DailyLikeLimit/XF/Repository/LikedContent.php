@@ -2,6 +2,11 @@
 
 namespace TickTackk\DailyLikeLimit\XF\Repository;
 
+/**
+ * Class LikedContent
+ *
+ * @package TickTackk\DailyLikeLimit
+ */
 class LikedContent extends XFCP_LikedContent
 {
     /**

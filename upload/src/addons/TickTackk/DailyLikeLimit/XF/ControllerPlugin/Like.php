@@ -4,6 +4,11 @@ namespace TickTackk\DailyLikeLimit\XF\ControllerPlugin;
 
 use XF\Mvc\Entity\Entity;
 
+/**
+ * Class Like
+ *
+ * @package TickTackk\DailyLikeLimit
+ */
 class Like extends XFCP_Like
 {
     /**
@@ -32,7 +37,7 @@ class Like extends XFCP_Like
 
                 $dailyLikedContentCount = $likeRepo->countDailyLikesByLikeUserId($visitor->user_id);
 
-                if ($dailyLikeLimit != -1 && ($dailyLikedContentCount >= $dailyLikeLimit))
+                if ($dailyLikeLimit !== -1 && ($dailyLikedContentCount >= $dailyLikeLimit))
                 {
                     return $this->error(\XF::phraseDeferred('dailyLikeLimit_you_have_reached_your_daily_like_limit'));
                 }
