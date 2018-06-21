@@ -47,6 +47,15 @@ class Like extends XFCP_Like
             }
             return $resource->hasPermission('maximumAllowedLikes');
         }
+        else if ($entity instanceof \XFMG\Entity\MediaItem)
+        {
+            $category = $entity->Category;
+            if ($category)
+            {
+                return $category->hasPermission('maximumAllowedLikes');
+            }
+            return $entity->hasPermission('maximumAllowedLikes');
+        }
 
         return $user->hasPermission('dailyLikeLimit', 'maximumAllowedLikes');
     }
