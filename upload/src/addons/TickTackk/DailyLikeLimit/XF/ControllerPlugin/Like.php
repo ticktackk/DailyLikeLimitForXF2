@@ -3,6 +3,7 @@
 namespace TickTackk\DailyLikeLimit\XF\ControllerPlugin;
 
 use XF\Mvc\Entity\Entity;
+use XF\Entity\User;
 
 /**
  * Class Like
@@ -22,39 +23,6 @@ class Like extends XFCP_Like
         if ($user === null)
         {
             $user = \XF::visitor();
-        }
-
-        if ($entity instanceof \XF\Entity\Post)
-        {
-            $thread = $entity->Thread;
-            if (!$thread)
-            {
-                throw new \LogicException("Unable to find thread for post with id of {$entity->post_id}");
-            }
-            $nodeId = $thread->node_id;
-            return $user->hasNodePermission($nodeId, 'maximumAllowedLikes');
-        }
-        else if ($entity instanceof \XFRM\Entity\ResourceItem)
-        {
-            return $entity->hasPermission('maximumAllowedLikes');
-        }
-        else if ($entity instanceof \XFRM\Entity\ResourceUpdate)
-        {
-            $resource = $entity->Resource;
-            if (!$resource)
-            {
-                throw new \LogicException("Unable to find resource for update with id of {$entity->resource_update_id}");
-            }
-            return $resource->hasPermission('maximumAllowedLikes');
-        }
-        else if ($entity instanceof \XFMG\Entity\MediaItem)
-        {
-            $category = $entity->Category;
-            if ($category)
-            {
-                return $category->hasPermission('maximumAllowedLikes');
-            }
-            return $entity->hasPermission('maximumAllowedLikes');
         }
 
         return $user->hasPermission('dailyLikeLimit', 'maximumAllowedLikes');
