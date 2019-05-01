@@ -1,0 +1,6 @@
+{
+    "permission_type": "flag",
+    "interface_group_id": "profilePostPermissions",
+    "display_order": 16,
+    "depend_permission_id": ""
+}
