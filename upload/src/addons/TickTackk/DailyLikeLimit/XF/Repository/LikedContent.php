@@ -2,6 +2,8 @@
 
 namespace TickTackk\DailyLikeLimit\XF\Repository;
 
+use XF\Entity\User as UserEntity;
+
 /**
  * Class LikedContent
  *
@@ -10,32 +12,24 @@ namespace TickTackk\DailyLikeLimit\XF\Repository;
 class LikedContent extends XFCP_LikedContent
 {
     /**
-     * @param $userId
+     * @param string          $contentType
+     * @param int             $contentId
+     * @param UserEntity|null $user
      *
      * @return \XF\Mvc\Entity\Finder
      */
-    public function findDailyLikesByLikeUserId($userId)
+    public function findLikesByUserForContent($contentType, $contentId, UserEntity $user = null)
     {
-        return $this->finder('XF:LikedContent')
-            ->where([
-                'like_user_id' => $userId
-            ])
-            ->where('like_date', '>=', strtotime("midnight", \XF::$time))
-            ->setDefaultOrder('like_date', 'DESC');
-    }
+        if (!$user)
+        {
+            $user = \XF::visitor();
+        }
 
-    /**
-     * @param $userId
-     *
-     * @return bool|null
-     */
-    public function countDailyLikesByLikeUserId($userId)
-    {
-        return $this->db()->fetchOne('
-            SELECT COUNT(*) AS liked_content_count
-            FROM xf_liked_content
-            WHERE like_user_id = ?
-            AND like_date >= ?
-        ', [$userId, strtotime('midnight', \XF::$time)]);
+        return $this->finder('XF:LikedContent')
+            ->where('content_type', $contentType)
+            ->where('content_id', $contentId)
+            ->where('like_user_id', $user->user_id)
+            ->where('like_date', '>=', strtotime('midnight', \XF::$time))
+            ->setDefaultOrder('like_date', 'DESC');
     }
 }

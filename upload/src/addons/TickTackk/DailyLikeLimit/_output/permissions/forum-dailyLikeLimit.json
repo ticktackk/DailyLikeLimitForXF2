@@ -1,0 +1,6 @@
+{
+    "permission_type": "integer",
+    "interface_group_id": "forumPermissions",
+    "display_order": 150,
+    "depend_permission_id": ""
+}

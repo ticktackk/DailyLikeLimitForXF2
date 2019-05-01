@@ -1,0 +1,6 @@
+{
+    "permission_type": "integer",
+    "interface_group_id": "conversationPermissions",
+    "display_order": 60,
+    "depend_permission_id": ""
+}

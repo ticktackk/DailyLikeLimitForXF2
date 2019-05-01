@@ -1,0 +1,6 @@
+{
+    "permission_type": "flag",
+    "interface_group_id": "xfmgMedia",
+    "display_order": 85,
+    "depend_permission_id": ""
+}
