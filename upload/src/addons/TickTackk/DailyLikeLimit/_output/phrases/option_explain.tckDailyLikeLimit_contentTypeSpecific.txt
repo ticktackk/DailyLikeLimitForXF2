@@ -1,0 +1,1 @@
+If checked, like limits will be based on supported content types.

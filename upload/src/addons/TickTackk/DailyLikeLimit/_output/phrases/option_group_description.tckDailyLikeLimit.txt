@@ -1,0 +1,1 @@
+Options that control the daily like limit add-on.

@@ -51,7 +51,13 @@ trait ContentTrait
             return true;
         }
 
-        $dailyLikeLimit = $this->getDailyLikeLimit();
+        /** @var \XF\App $app */
+        $app = $this->app();
+        $contentTypeSpecific = (bool) $app->options()->tckDailyLikeLimit_contentTypeSpecific;
+        $dailyLikeLimit = $contentTypeSpecific ? $this->getDailyLikeLimit() : $user->hasPermission(
+            'general', 'dailyLikeLimit'
+        );
+
         if ($dailyLikeLimit === -1)
         {
             return false;
@@ -71,7 +77,15 @@ trait ContentTrait
 
         /** @var ExtendedLikedContentRepo $likedContentRepo */
         $likedContentRepo = $this->repository('XF:LikedContent');
-        return $dailyLikeLimit > (int) $likedContentRepo->findLikesByUserForContent($contentType, $contentId, $user)
-                ->total();
+        if ($contentTypeSpecific)
+        {
+            $likeCount = $likedContentRepo->findLikesByUserTodayForContent($contentType, $contentId, $user)->total();
+        }
+        else
+        {
+            $likeCount = $likedContentRepo->findLikesByUserToday($user)->total();
+        }
+
+        return $dailyLikeLimit > $likeCount;
     }
 }
