@@ -4,6 +4,7 @@ namespace TickTackk\DailyLikeLimit\Entity;
 
 use TickTackk\DailyLikeLimit\XF\Repository\LikedContent as ExtendedLikedContentRepo;
 use XF\Entity\User as UserEntity;
+use XF\Mvc\Entity\ArrayCollection;
 
 /**
  * Trait ContentTrait
@@ -18,6 +19,21 @@ trait ContentTrait
     abstract protected function getDailyLikeLimit();
 
     /**
+     * @param UserEntity|null $user
+     *
+     * @return bool
+     */
+    protected function getHasLikedContent(UserEntity $user = null)
+    {
+        if (!$user)
+        {
+            $user = \XF::visitor();
+        }
+
+        return !empty($this->Likes[$user->user_id]);
+    }
+
+    /**
      * @param null $error
      *
      * @return bool
@@ -26,7 +42,7 @@ trait ContentTrait
     {
         $canLike = parent::canLike($error);
 
-        if ($canLike)
+        if ($canLike && !$this->getHasLikedContent())
         {
             $canLike = $this->hasReachedLikeLimit();
         }

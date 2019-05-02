@@ -1,6 +1,0 @@
-{
-    "from_class": "XF\\ControllerPlugin\\Like",
-    "to_class": "TickTackk\\DailyLikeLimit\\XF\\ControllerPlugin\\Like",
-    "execute_order": 10,
-    "active": true
-}
