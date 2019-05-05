@@ -4,7 +4,6 @@ namespace TickTackk\DailyLikeLimit\Entity;
 
 use TickTackk\DailyLikeLimit\XF\Repository\LikedContent as ExtendedLikedContentRepo;
 use XF\Entity\User as UserEntity;
-use XF\Mvc\Entity\ArrayCollection;
 use XF\Mvc\Entity\Structure;
 
 /**
@@ -48,6 +47,7 @@ trait ContentTrait
      */
     public function canLike(&$error = null)
     {
+        /** @noinspection PhpUndefinedClassInspection */
         $canLike = parent::canLike($error);
 
         if ($canLike && !$this->getHasLikedContent())
