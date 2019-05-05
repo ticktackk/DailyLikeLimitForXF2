@@ -5,6 +5,7 @@ namespace TickTackk\DailyLikeLimit\Entity;
 use TickTackk\DailyLikeLimit\XF\Repository\LikedContent as ExtendedLikedContentRepo;
 use XF\Entity\User as UserEntity;
 use XF\Mvc\Entity\ArrayCollection;
+use XF\Mvc\Entity\Structure;
 
 /**
  * Trait ContentTrait
@@ -28,6 +29,13 @@ trait ContentTrait
         if (!$user)
         {
             $user = \XF::visitor();
+        }
+
+        /** @var Structure $structure */
+        $structure = $this->structure();
+        if (!isset($structure->relations['Likes']))
+        {
+            throw new \LogicException('No likes relation available.');
         }
 
         return !empty($this->Likes[$user->user_id]);
